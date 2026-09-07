@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的作品集 | Personal Portfolio</title>
+    <!-- 引入 Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- 引入 Font Awesome 圖示 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 基本重置與變數設定 */
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f3f4f6;
+            --white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Sans TC', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* 導覽列 */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            padding: 1.5rem 5%;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            margin-left: 2rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* 標題區塊 */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            background: var(--primary-color);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: background 0.3s, transform 0.3s;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        /* 共用區塊樣式 */
+        section {
+            padding: 5rem 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--text-dark);
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--primary-color);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        /* 關於我 */
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--text-light);
+        }
+
+        /* 技能區塊 */
+        .skills {
+            background: var(--bg-light);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .skill-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-card i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        /* 作品集區塊 */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 200px;
+            background: #d1d5db; /* 圖片佔位符顏色 */
+            object-fit: cover;
+        }
+
+        .project-info {
+            padding: 1.5rem;
+        }
+
+        .project-info h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .project-info p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .project-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* 聯絡我 */
+        .contact {
+            background: var(--text-dark);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .contact .section-title {
+            color: var(--white);
+        }
+
+        .social-links {
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            color: var(--white);
+            font-size: 1.8rem;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background: #111827;
+            color: #9ca3af;
+        }
+
+        /* 手機版排版 */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; /* 簡易版在手機上隱藏選單，可後續加入漢堡選單 */
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 導覽列 -->
+    <nav>
+        <a href="#" class="logo">MyPortfolio</a>
+        <div class="nav-links">
+            <a href="#about">關於我</a>
+            <a href="#skills">專業技能</a>
+            <a href="#portfolio">作品集</a>
+            <a href="#contact">聯絡方式</a>
+        </div>
+    </nav>
+
+    <!-- 首頁標題區塊 -->
+    <section class="hero" id="home">
+        <div>
+            <h1>你好，我是 [你的名字]</h1>
+            <p>一位熱愛創造與學習的 [你的職稱/科系，例如：前端工程師 / 視覺設計師]</p>
+            <a href="#portfolio" class="btn">查看我的作品</a>
+        </div>
+    </section>
+
+    <!-- 關於我 -->
+    <section id="about">
+        <h2 class="section-title">關於我</h2>
+        <div class="about-content">
+            <p>在這裡寫下你的簡介。例如：我目前就讀於某某大學，對網頁開發與使用者體驗設計充滿熱情。在學期間參與過多項專案開發，善於解決問題並具備良好的團隊合作能力。我期待能將所學應用於實際的產品中，創造出有價值的作品。</p>
+        </div>
+    </section>
+
+    <!-- 技能區塊 -->
+    <section class="skills" id="skills">
+        <h2 class="section-title">專業技能</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <i class="fa-solid fa-code"></i>
+                <h3>網頁前端</h3>
+                <p>HTML5, CSS3, JavaScript, React</p>
+            </div>
+            <div class="skill-card">
+                <i class="fa-solid fa-pen-nib"></i>
+                <h3>UI/UX 設計</h3>
+                <p>Figma, Adobe XD, Photoshop</p>
+            </div>
+            <div class="skill-card">
+                <i class="fa-solid fa-database"></i>
+                <h3>後端與其他</h3>
+                <p>Node.js, Python, Git, GitHub</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 作品集區塊 -->
+    <section id="portfolio">
+        <h2 class="section-title">精選作品</h2>
+        <div class="portfolio-grid">
+            <!-- 作品 1 -->
+            <div class="project-card">
+                <!-- 將 src 替換為你的作品截圖網址 -->
+                <img src="https://via.placeholder.com/400x250" alt="專案截圖" class="project-img">
+                <div class="project-info">
+                    <h3>專案名稱一</h3>
+                    <p>這是一個電子商務網站的前端介面設計，使用了 HTML、CSS 與 JS，並注重了響應式佈局與使用者體驗。</p>
+                    <a href="#" class="project-link">查看專案細節 &rarr;</a>
+                </div>
+            </div>
+            <!-- 作品 2 -->
+            <div class="project-card">
+                <img src="https://via.placeholder.com/400x250" alt="專案截圖" class="project-img">
+                <div class="project-info">
+                    <h3>專案名稱二</h3>
+                    <p>這是一個利用 Python 抓取數據並呈現圖表的資料分析專案，幫助使用者快速了解市場趨勢。</p>
+                    <a href="#" class="project-link">查看專案細節 &rarr;</a>
+                </div>
+            </div>
+            <!-- 作品 3 -->
+            <div class="project-card">
+                <img src="https://via.placeholder.com/400x250" alt="專案截圖" class="project-img">
+                <div class="project-info">
+                    <h3>專案名稱三</h3>
+                    <p>為學校社團設計的活動報名系統，大幅減少了人工統整名單的時間成本。</p>
+                    <a href="#" class="project-link">查看專案細節 &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 聯絡我 -->
+    <section class="contact" id="contact">
+        <h2 class="section-title">與我聯絡</h2>
+        <p>目前正在尋找實習與合作機會，如果有任何想法，歡迎隨時與我聯繫！</p>
+        <div class="social-links">
+            <a href="mailto:your.email@example.com"><i class="fa-solid fa-envelope"></i></a>
+            <a href="https://github.com/yourusername" target="_blank"><i class="fa-brands fa-github"></i></a>
+            <a href="https://linkedin.com/in/yourusername" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://instagram.com/yourusername" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 [你的名字]. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
