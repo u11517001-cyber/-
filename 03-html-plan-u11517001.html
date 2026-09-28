@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>紙橋挑戰社：活動準備頁</title>
+    <style>
+        :root {
+            --primary-color: #2979ff;
+            --secondary-color: #bbdefb;
+            --bg-color: #f4f6f9;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: "Microsoft JhengHei", "PingFang TC", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 2px dashed var(--secondary-color);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            color: #1565c0;
+            margin-bottom: 10px;
+        }
+
+        .intro {
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        .section-card {
+            background-color: #fafafa;
+            border-left: 5px solid var(--primary-color);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .section-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #1565c0;
+            margin-bottom: 12px;
+        }
+
+        /* 材料清單樣式 */
+        .materials-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .materials-list li {
+            padding: 8px 12px;
+            margin-bottom: 6px;
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+        }
+
+        .materials-list li::before {
+            content: "✔";
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* 步驟步驟樣式 */
+        .steps-list {
+            padding-left: 20px;
+        }
+
+        .steps-list li {
+            margin-bottom: 8px;
+        }
+
+        /* 分工表格樣式 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            background: #fff;
+        }
+
+        th, td {
+            border: 1px solid #e0e0e0;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--secondary-color);
+            color: #0d47a1;
+        }
+
+        /* 紀錄填寫區塊 */
+        textarea {
+            width: 100%;
+            height: 100px;
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: vertical;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>🌉 紙橋挑戰社：活動準備頁</h1>
+        <p class="intro">我們要用簡單的材料，設計一座能承重的紙橋。</p>
+    </header>
+
+    <!-- 要帶的材料 -->
+    <div class="section-card">
+        <div class="section-title">📦 要帶的材料</div>
+        <ul class="materials-list">
+            <li>A4 紙 3 張</li>
+            <li>膠帶 1 卷</li>
+            <li>積木 10 個</li>
+        </ul>
+    </div>
+
+    <!-- 挑戰步驟 -->
+    <div class="section-card">
+        <div class="section-title">🚀 挑戰步驟</div>
+        <ol class="steps-list">
+            <li>先畫出紙橋草圖</li>
+            <li>再折出橋面並固定</li>
+            <li>逐一放上積木，觀察能承受的重量</li>
+            <li>記錄結果，討論如何改進</li>
+        </ol>
+    </div>
+
+    <!-- 小組分工 -->
+    <div class="section-card">
+        <div class="section-title">👥 小組分工</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>角色</th>
+                    <th>主要任務</th>
+                    <th>預計成果</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>設計員</strong></td>
+                    <td>畫出紙橋草圖</td>
+                    <td>一張草圖</td>
+                </tr>
+                <tr>
+                    <td><strong>製作員</strong></td>
+                    <td>依照草圖組裝</td>
+                    <td>一座紙橋</td>
+                </tr>
+                <tr>
+                    <td><strong>紀錄員</strong></td>
+                    <td>記錄測試結果</td>
+                    <td>一份測試紀錄</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 測試記錄區塊 -->
+    <div class="section-card">
+        <div class="section-title">📝 測試紀錄與討論</div>
+        <p>最終紙橋成功承受了幾個積木？可以如何改進結構？</p>
+        <textarea placeholder="請寫下測試結果與改進想法..."></textarea>
+    </div>
+</div>
+
+</body>
+</html>

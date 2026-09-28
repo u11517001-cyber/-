@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>校園自然觀察任務卡</title>
+    <style>
+        :root {
+            --primary-color: #2e7d32;
+            --secondary-color: #81c784;
+            --bg-color: #f1f8e9;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: "Microsoft JhengHei", "PingFang TC", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 2px dashed var(--secondary-color);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .intro {
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        .task-card {
+            background-color: #f9f9f9;
+            border-left: 5px solid var(--primary-color);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .task-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .audio-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .audio-btn:hover {
+            background-color: #1b5e20;
+        }
+
+        textarea {
+            width: 100%;
+            height: 80px;
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: vertical;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+
+        .image-placeholder, .video-placeholder {
+            width: 100%;
+            max-width: 100%;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        img, video {
+            width: 100%;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>🌱 校園自然觀察任務卡</h1>
+        <p class="intro">今天我們用眼睛觀察，也用文字記錄發現。</p>
+    </header>
+
+    <!-- 任務一 -->
+    <div class="task-card">
+        <div class="task-title">任務一：看看葉脈</div>
+        <p>觀察葉片圖片，找出葉脈延伸的方向。</p>
+        <div class="image-placeholder">
+            <!-- 替換成你的葉片圖片連結 -->
+            <img src="https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&w=800&q=80" alt="葉脈觀察圖">
+        </div>
+        <textarea placeholder="寫下你觀察到的葉脈延伸方向..."></textarea>
+    </div>
+
+    <!-- 任務二 -->
+    <div class="task-card">
+        <div class="task-title">任務二：準備開始</div>
+        <p>按下播放，聽到三個由低到高的短音後，開始你的觀察。</p>
+        <button class="audio-btn" onclick="playThreeTones()">
+            ▶ 播放提示音
+        </button>
+    </div>
+
+    <!-- 任務三 -->
+    <div class="task-card">
+        <div class="task-title">任務三：觀察花朵</div>
+        <p>播放短片，看看花朵怎麼移動，再用一句話描述。</p>
+        <div class="video-placeholder">
+            <!-- 替換成你的花朵短片連結 -->
+            <video controls poster="https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=800&q=80">
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                您的瀏覽器不支援影片播放。
+            </video>
+        </div>
+        <textarea placeholder="用一句話描述花朵是怎麼移動的..."></textarea>
+    </div>
+</div>
+
+<script>
+    // 使用 Web Audio API 播放三個由低到高的短音
+    function playThreeTones() {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContext) {
+            alert("您的瀏覽器不支援音訊播放功能");
+            return;
+        }
+        
+        const audioCtx = new AudioContext();
+        const frequencies = [261.63, 329.63, 392.00]; // Do (C4), Mi (E4), Sol (G4)
+        const duration = 0.15; // 每個聲音長度 (秒)
+        const gap = 0.05;      // 間隔時間 (秒)
+
+        frequencies.forEach((freq, index) => {
+            const oscillator = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+
+            oscillator.type = 'sine';
+            oscillator.frequency.value = freq;
+
+            const startTime = audioCtx.currentTime + index * (duration + gap);
+            
+            // 設定平滑Fade Out，避免爆音
+            gainNode.gain.setValueAtTime(0.3, startTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
+
+            oscillator.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+
+            oscillator.start(startTime);
+            oscillator.stop(startTime + duration);
+        });
+    }
+</script>
+
+</body>
+</html>
